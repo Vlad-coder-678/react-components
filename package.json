@@ -1,0 +1,56 @@
+{
+  "name": "react-components",
+  "version": "1.0.0",
+  "description": "simple_webpack",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "start": "cross-env NODE_ENV=development webpack serve --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vlad-coder-678/react-components.git"
+  },
+  "author": "Vlad-coder-678",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vlad-coder-678/react-components/issues"
+  },
+  "homepage": "https://github.com/Vlad-coder-678/react-components#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.9",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.2.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.2",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-svgo": "^9.0.0",
+    "imagemin-webpack": "^5.1.1",
+    "mini-css-extract-plugin": "^2.1.0",
+    "node-sass": "^6.0.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "sass-loader": "^12.1.0",
+    "stylelint": "^13.13.1",
+    "stylelint-declaration-block-no-ignored-properties": "^2.4.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.20.1",
+    "terser-webpack-plugin": "^5.1.4",
+    "webpack": "^5.47.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "focus-visible": "^5.2.0",
+    "normalize.css": "^8.0.1"
+  }
+}
