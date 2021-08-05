@@ -1,0 +1,58 @@
+import img1 from '../assets/logo.jpg';
+import img2 from '../assets/poster.jpg';
+
+// eslint-disable-next-line import/prefer-default-export
+export const cardsData = [
+  {
+    avaPath: img2,
+    avaAlt: 'avatar',
+    author: 'Kiril Pichurin',
+    status: 'I love webpack',
+    title: 'react-component',
+    imagePath: img1,
+    imageAlt: 'imgDesc',
+    text: "Now i'm tell you nice fairy tail about webpack..",
+    date: '30.07.2021',
+    likes: '123',
+    views: '523',
+  },
+  {
+    avaPath: img2,
+    avaAlt: 'avatar',
+    author: 'Mary Cranberry',
+    status: 'I love webpack',
+    title: 'react-component',
+    imagePath: img1,
+    imageAlt: 'imgDesc',
+    text: "Now i'm tell you nice fairy tail about webpack..",
+    date: '30.07.2021',
+    likes: '123',
+    views: '523',
+  },
+  {
+    avaPath: img2,
+    avaAlt: 'avatar',
+    author: 'Kiril Matveich',
+    status: 'I love webpack',
+    title: 'react-component',
+    imagePath: img1,
+    imageAlt: 'imgDesc',
+    text: "Now i'm tell you nice fairy tail about webpack..",
+    date: '30.07.2021',
+    likes: '123',
+    views: '523',
+  },
+  {
+    avaPath: img2,
+    avaAlt: 'avatar',
+    author: 'Stepan Polyckarpovich',
+    status: 'I love webpack',
+    title: 'react-component',
+    imagePath: img1,
+    imageAlt: 'imgDesc',
+    text: "Now i'm tell you nice fairy tail about webpack..",
+    date: '30.07.2021',
+    likes: '123',
+    views: '523',
+  },
+];
