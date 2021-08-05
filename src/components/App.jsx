@@ -10,7 +10,6 @@ const Container = styled.div`
 
 const App = () => (
   <Container>
-    <h1>React-Components</h1>
     <SectionFirstScreen />
   </Container>
 );
