@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SectionFirstScreen from './SectionFirstScreen';
+// import SectionFirstScreen from './SectionFirstScreen';
+import SectionForms from './SectionForms';
 
 const Container = styled.div`
   max-width: 1170px;
@@ -10,7 +11,8 @@ const Container = styled.div`
 
 const App = () => (
   <Container>
-    <SectionFirstScreen />
+    {/* <SectionFirstScreen /> */}
+    <SectionForms />
   </Container>
 );
 

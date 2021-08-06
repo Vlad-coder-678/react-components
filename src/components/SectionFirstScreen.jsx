@@ -24,7 +24,7 @@ const SectionFirstScreen = () => {
       return cards;
     }
     return cards.filter((card) => {
-      const cardName = card.title.toLowerCase() + card.text.toLowerCase();
+      const cardName = `${card.title.toLowerCase()} ${card.text.toLowerCase()}`;
       return cardName.includes(q);
     });
   };
