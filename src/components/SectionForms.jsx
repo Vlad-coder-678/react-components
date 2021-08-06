@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import CardRequest from './CardRequest';
+import InputNameComponent from './InputNameComponent';
+import InputEmailComponent from './InputEmailComponent';
+import InputPhoneComponent from './InputPhoneComponent';
 
 const Wrap = styled.div`
   width: 100%;
   height: 100vh;
+  display: flex;
 
   form {
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin: 3rem 2rem;
-    border: 1px solid red;
   }
 `;
 
@@ -22,106 +26,158 @@ const WrapCards = styled.div`
   justify-content: center;
 `;
 
-const SectionForms = () => {
-  const [userId, setUserId] = React.useState(2);
-  const [userName, setUserName] = React.useState('');
-  const [userSurname, setUserSurname] = React.useState('');
-  const [userMail, setUserMail] = React.useState('');
-  const [userPhone, setUserPhone] = React.useState('');
-  const [userBday, setUserBday] = React.useState('');
-  const [requests, setRequests] = React.useState([
-    {
-      userId: 1,
-      userName: 'Jake',
-      userSurname: 'Johnson',
-      userMail: 'mail@mail.ru',
-      userPhone: '+79876543210',
-      userBday: '12.09.12',
-    },
-  ]);
+const WrapFormChild = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 5px;
+`;
 
-  if (!Array.isArray(requests) || requests.length <= 0) {
-    return null;
-  }
+const SectionForms = () => {
+  const [userId, setUserId] = useState(1);
+
+  const [userName, setUserName] = useState('');
+  const [userMail, setUserMail] = useState('');
+  const [userPhone, setUserPhone] = useState('');
+
+  const [userMessage, setUserMessage] = useState('');
+  const [userSity, setUserSity] = useState('Moskow');
+  const [userBday, setUserBday] = useState('');
+  const [userChoice, setUserChoice] = useState([]);
+  const [userChecked, setUserChecked] = useState(true);
+  const [userNumber, setUserNumber] = useState(0);
+
+  const [requests, setRequests] = useState([]);
+
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmit(true);
     setRequests([
       ...requests,
       {
         userId,
-        userName,
-        userSurname,
+        userName: `${userName[0].toUpperCase()}${userName.split('').slice(1).join('').toLowerCase()}`,
         userMail,
-        userPhone,
+        userPhone: `+${userPhone.split('')[0]} (${userPhone.split('').slice(1, 4).join('')}) ${userPhone
+          .split('')
+          .slice(4, -5)
+          .join('')}-${userPhone.split('').slice(7).join('')}`,
         userBday,
+        userSity,
+        userChoice,
+        userChecked,
+        userNumber,
+        userMessage,
       },
     ]);
+
     setUserId(userId + 1);
     setUserName('');
-    setUserSurname('');
     setUserMail('');
     setUserPhone('');
     setUserBday('');
+    setUserSity('Moskow');
+    setUserChoice([]);
+    setUserChecked(true);
+    setUserNumber(0);
+    setUserMessage('');
   };
 
   return (
     <Wrap>
       <form>
-        <label htmlFor="userName">
-          <span>Name</span>
+        <InputNameComponent
+          userName={userName}
+          setUserName={setUserName}
+          isSubmit={isSubmit}
+          setIsSubmit={setIsSubmit}
+        />
+        <InputEmailComponent
+          userMail={userMail}
+          setUserMail={setUserMail}
+          isSubmit={isSubmit}
+          setIsSubmit={setIsSubmit}
+        />
+        <InputPhoneComponent
+          userPhone={userPhone}
+          setUserPhone={setUserPhone}
+          isSubmit={isSubmit}
+          setIsSubmit={setIsSubmit}
+        />
+        <WrapFormChild>
+          <label htmlFor="userBday">
+            <span>Your Birthday</span>
+          </label>
+          <input
+            value={userBday}
+            onInput={(e) => setUserBday(e.target.value)}
+            type="phone"
+            id="userBday"
+            placeholder="Enter your date birthday.."
+            name="inputBday"
+          />
+        </WrapFormChild>
+        <label htmlFor="userSity">
+          <span>Sity</span>
         </label>
+        <select
+          id="userSity"
+          value={userSity}
+          onChange={(e) => {
+            setUserSity(e.target.value);
+          }}
+        >
+          <option value="moskow">Moskow</option>
+          <option value="kiyv">Kiyv</option>
+          <option value="minsk">Minsk</option>
+          <option value="new-york">New-York</option>
+        </select>
+        <label htmlFor="userChoice">
+          <span>Choice</span>
+        </label>
+        <select
+          id="userChoice"
+          multiple
+          value={userChoice}
+          onChange={(e) => {
+            setUserChoice(e.target.value);
+          }}
+        >
+          <option value="kukumber">Kukumber</option>
+          <option value="lumumber">Lumumber</option>
+          <option value="dumper">Dumper</option>
+          <option value="gumper">Gumper</option>
+        </select>
+        <label htmlFor="userChecked">Нажимая submit, вы даёте согласие на обработку личных данных</label>
         <input
-          value={userName}
-          onInput={(e) => setUserName(e.target.value)}
+          type="checkbox"
+          checked={userChecked}
+          onChange={() => {
+            setUserChecked(!userChecked);
+          }}
+          id="userChecked"
+          name="userChecked"
+        />
+        <label htmlFor="userNumber">Your number</label>
+        <input
+          name="userNumber"
+          type="number"
+          value={userNumber}
+          onChange={(e) => {
+            setUserNumber(e.target.value);
+          }}
+        />
+        <label htmlFor="userMessage">
+          <span>Message</span>
+        </label>
+        <textarea
+          value={userMessage}
+          onInput={(e) => setUserMessage(e.target.value)}
           type="text"
-          id="userName"
-          placeholder="Enter name.."
-          name="inputName"
-        />
-        <label htmlFor="userSurname">
-          <span>Surname</span>
-        </label>
-        <input
-          value={userSurname}
-          onInput={(e) => setUserSurname(e.target.value)}
-          type="text"
-          id="userSurname"
-          placeholder="Enter your surname.."
-          name="inputSurname"
-        />
-        <label htmlFor="userMail">
-          <span>Mail</span>
-        </label>
-        <input
-          value={userMail}
-          onInput={(e) => setUserMail(e.target.value)}
-          type="email"
-          id="userMail"
-          placeholder="Enter your mail.."
-          name="inputMail"
-        />
-        <label htmlFor="userPhone">
-          <span>Telephone</span>
-        </label>
-        <input
-          value={userPhone}
-          onInput={(e) => setUserPhone(e.target.value)}
-          type="phone"
-          id="userPhone"
-          placeholder="Enter your phone number.."
-          name="inputPhone"
-        />
-        <label htmlFor="userBday">
-          <span>Your Birthday</span>
-        </label>
-        <input
-          value={userBday}
-          onInput={(e) => setUserBday(e.target.value)}
-          type="phone"
-          id="userBday"
-          placeholder="Enter your date birthday.."
-          name="inputBday"
+          id="userMessage"
+          placeholder="Enter your message.."
+          name="inputMessage"
         />
         <button onClick={handleSubmit} type="submit">
           Submit
