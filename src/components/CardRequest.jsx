@@ -19,14 +19,13 @@ const Wrap = styled.div`
 const CardRequest = ({ requestData }) => (
   <Wrap>
     <h3>{requestData.userName}</h3>
-    <h3>{requestData.userPhone}</h3>
     <h3>{requestData.userMail}</h3>
+    <h3>{requestData.userPhone}</h3>
     <h3>{requestData.userBday}</h3>
     <h3>{requestData.userSity}</h3>
-    <h3>{requestData.userMessage}</h3>
-    <h3>{requestData.userChoice}</h3>
     <h3>{requestData.userChecked}</h3>
-    <h3>{requestData.userNumber}</h3>
+    <h3>{requestData.userChoice}</h3>
+    <h3>{requestData.userCase}</h3>
   </Wrap>
 );
 

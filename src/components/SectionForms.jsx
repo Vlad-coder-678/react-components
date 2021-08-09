@@ -5,6 +5,11 @@ import CardRequest from './CardRequest';
 import InputNameComponent from './InputNameComponent';
 import InputEmailComponent from './InputEmailComponent';
 import InputPhoneComponent from './InputPhoneComponent';
+import InputDateComponent from './InputDateComponent';
+import SelectedComponent from './SelectedComponent';
+import CheckboxComponent from './CheckboxComponent';
+import SelectMultipleComponent from './SelectMultipleComponent';
+import SwitcherComponent from './SwitcherComponent';
 
 const Wrap = styled.div`
   width: 100%;
@@ -38,13 +43,11 @@ const SectionForms = () => {
   const [userName, setUserName] = useState('');
   const [userMail, setUserMail] = useState('');
   const [userPhone, setUserPhone] = useState('');
-
-  const [userMessage, setUserMessage] = useState('');
   const [userSity, setUserSity] = useState('Moskow');
   const [userBday, setUserBday] = useState('');
-  const [userChoice, setUserChoice] = useState([]);
+  const [userChoice, setUserChoice] = useState(['kukumber']);
+  const [userCase, setUserCase] = useState('male');
   const [userChecked, setUserChecked] = useState(true);
-  const [userNumber, setUserNumber] = useState(0);
 
   const [requests, setRequests] = useState([]);
 
@@ -67,8 +70,7 @@ const SectionForms = () => {
         userSity,
         userChoice,
         userChecked,
-        userNumber,
-        userMessage,
+        userCase,
       },
     ]);
 
@@ -78,10 +80,9 @@ const SectionForms = () => {
     setUserPhone('');
     setUserBday('');
     setUserSity('Moskow');
-    setUserChoice([]);
     setUserChecked(true);
-    setUserNumber(0);
-    setUserMessage('');
+    setUserChoice([]);
+    setUserCase('male');
   };
 
   return (
@@ -105,83 +106,41 @@ const SectionForms = () => {
           isSubmit={isSubmit}
           setIsSubmit={setIsSubmit}
         />
+        <InputDateComponent
+          userBday={userBday}
+          setUserBday={setUserBday}
+          isSubmit={isSubmit}
+          setIsSubmit={setIsSubmit}
+        />
+        <SelectedComponent
+          userSity={userSity}
+          setUserSity={setUserSity}
+          isSubmit={isSubmit}
+          setIsSubmit={setIsSubmit}
+        />
+        <CheckboxComponent
+          userChecked={userChecked}
+          setUserChecked={setUserChecked}
+          isSubmit={isSubmit}
+          setIsSubmit={setIsSubmit}
+        />
+        <SelectMultipleComponent
+          userChoice={userChoice}
+          setUserChoice={setUserChoice}
+          isSubmit={isSubmit}
+          setIsSubmit={setIsSubmit}
+        />
+        <SwitcherComponent
+          userCase={userCase}
+          setUserCase={setUserCase}
+          isSubmit={isSubmit}
+          setIsSubmit={setIsSubmit}
+        />
         <WrapFormChild>
-          <label htmlFor="userBday">
-            <span>Your Birthday</span>
-          </label>
-          <input
-            value={userBday}
-            onInput={(e) => setUserBday(e.target.value)}
-            type="phone"
-            id="userBday"
-            placeholder="Enter your date birthday.."
-            name="inputBday"
-          />
+          <button onClick={handleSubmit} type="submit">
+            Submit
+          </button>
         </WrapFormChild>
-        <label htmlFor="userSity">
-          <span>Sity</span>
-        </label>
-        <select
-          id="userSity"
-          value={userSity}
-          onChange={(e) => {
-            setUserSity(e.target.value);
-          }}
-        >
-          <option value="moskow">Moskow</option>
-          <option value="kiyv">Kiyv</option>
-          <option value="minsk">Minsk</option>
-          <option value="new-york">New-York</option>
-        </select>
-        <label htmlFor="userChoice">
-          <span>Choice</span>
-        </label>
-        <select
-          id="userChoice"
-          multiple
-          value={userChoice}
-          onChange={(e) => {
-            setUserChoice(e.target.value);
-          }}
-        >
-          <option value="kukumber">Kukumber</option>
-          <option value="lumumber">Lumumber</option>
-          <option value="dumper">Dumper</option>
-          <option value="gumper">Gumper</option>
-        </select>
-        <label htmlFor="userChecked">Нажимая submit, вы даёте согласие на обработку личных данных</label>
-        <input
-          type="checkbox"
-          checked={userChecked}
-          onChange={() => {
-            setUserChecked(!userChecked);
-          }}
-          id="userChecked"
-          name="userChecked"
-        />
-        <label htmlFor="userNumber">Your number</label>
-        <input
-          name="userNumber"
-          type="number"
-          value={userNumber}
-          onChange={(e) => {
-            setUserNumber(e.target.value);
-          }}
-        />
-        <label htmlFor="userMessage">
-          <span>Message</span>
-        </label>
-        <textarea
-          value={userMessage}
-          onInput={(e) => setUserMessage(e.target.value)}
-          type="text"
-          id="userMessage"
-          placeholder="Enter your message.."
-          name="inputMessage"
-        />
-        <button onClick={handleSubmit} type="submit">
-          Submit
-        </button>
       </form>
       <WrapCards>
         {requests.map((item) => (
