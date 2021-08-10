@@ -24,7 +24,7 @@ const CardRequest = ({ requestData }) => (
     <h3>{requestData.userBday}</h3>
     <h3>{requestData.userSity}</h3>
     <h3>{requestData.userChecked}</h3>
-    <h3>{requestData.userChoice}</h3>
+    {/* <h3>{requestData.userChoice}</h3> */}
     <h3>{requestData.userCase}</h3>
   </Wrap>
 );

@@ -11,15 +11,15 @@ const Wrap = styled.div`
 const SelectMultipleComponent = ({ isSubmit, setIsSubmit }) => {
   // const [userSelect, setUserSelect] = useState();
   const [onBlurSelected, setOnBlurSelected] = useState(false);
-  const [isValidSelected, setIsValidSelected] = useState(false);
+  // const [isValidSelected, setIsValidSelected] = useState(false);
 
-  const onBlurHandleSelected = (e) => {
-    setOnBlurSelected(true);
-    // console.log(e.target);
-    // console.log(userSelect);
-    // setUserChoice([]);
-    setIsValidSelected(e.target.value !== null);
-  };
+  // const onBlurHandleSelected = (e) => {
+  //   setOnBlurSelected(true);
+  //   // console.log(e.target);
+  //   // console.log(userSelect);
+  //   // setUserChoice([]);
+  //   setIsValidSelected(e.target.value !== null);
+  // };
 
   useEffect(() => {
     if (isSubmit) {
@@ -34,18 +34,16 @@ const SelectMultipleComponent = ({ isSubmit, setIsSubmit }) => {
         id="userChoice"
         multiple
         // value={userChoice}
-        value={['kukumber']}
+        // value={['kukumber']}
         onFocus={() => {
           setIsSubmit(false);
         }}
-        onBlur={onBlurHandleSelected}
-        onChange={(e) => {
-          console.log(e.target.option);
-          // setUserSelect(e.target.value);
-        }}
+        // onBlur={onBlurHandleSelected}
+        // onChange={(e) => {
+        // console.log(e.target.option);
+        // setUserSelect(e.target.value);
+        // }}
       >
-        {/* не получается отобразить все выделенные опции */}
-        {/* попробовать выбрать не показывая, затем показать */}
         <option id="kukumber" value="kukumber" selected>
           Kukumber
         </option>
@@ -63,7 +61,7 @@ const SelectMultipleComponent = ({ isSubmit, setIsSubmit }) => {
         <span>Choice</span>
       </label>
       {/* eslint-disable-next-line no-nested-ternary */}
-      {!onBlurSelected ? null : isValidSelected ? (
+      {/* {!onBlurSelected ? null : isValidSelected ? (
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
           <path fill="#0f0" d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
         </svg>
@@ -76,7 +74,7 @@ const SelectMultipleComponent = ({ isSubmit, setIsSubmit }) => {
             />
           </svg>
         </div>
-      )}
+      )} */}
     </Wrap>
   );
 };

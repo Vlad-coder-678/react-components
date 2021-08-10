@@ -1,12 +1,12 @@
 import React from 'react';
 
-// eslint-disable-next-line object-curly-newline
 const SwitcherComponent = ({ userCase, setUserCase, setIsSubmit }) => {
   const handleChange = (e) => {
-    e.preventDefault();
+    e.stopPropagation();
     setIsSubmit(false);
     setUserCase(e.target.id);
   };
+
   return (
     <div onChange={handleChange}>
       <input type="radio" id="male" name="gender" value={userCase} defaultChecked />

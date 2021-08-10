@@ -8,7 +8,7 @@ import InputPhoneComponent from './InputPhoneComponent';
 import InputDateComponent from './InputDateComponent';
 import SelectedComponent from './SelectedComponent';
 import CheckboxComponent from './CheckboxComponent';
-import SelectMultipleComponent from './SelectMultipleComponent';
+// import SelectMultipleComponent from './SelectMultipleComponent';
 import SwitcherComponent from './SwitcherComponent';
 
 const Wrap = styled.div`
@@ -41,13 +41,15 @@ const SectionForms = () => {
   const [userId, setUserId] = useState(1);
 
   const [userName, setUserName] = useState('');
+  const [userCase, setUserCase] = useState('male');
   const [userMail, setUserMail] = useState('');
   const [userPhone, setUserPhone] = useState('');
   const [userSity, setUserSity] = useState('Moskow');
   const [userBday, setUserBday] = useState('');
-  const [userChoice, setUserChoice] = useState(['kukumber']);
-  const [userCase, setUserCase] = useState('male');
   const [userChecked, setUserChecked] = useState(true);
+  // const [userChoice, setUserChoice] = useState(['kukumber']);
+
+  const [isValidName, setIsValidName] = useState();
 
   const [requests, setRequests] = useState([]);
 
@@ -56,33 +58,34 @@ const SectionForms = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmit(true);
-    setRequests([
-      ...requests,
-      {
-        userId,
-        userName: `${userName[0].toUpperCase()}${userName.split('').slice(1).join('').toLowerCase()}`,
-        userMail,
-        userPhone: `+${userPhone.split('')[0]} (${userPhone.split('').slice(1, 4).join('')}) ${userPhone
-          .split('')
-          .slice(4, -5)
-          .join('')}-${userPhone.split('').slice(7).join('')}`,
-        userBday,
-        userSity,
-        userChoice,
-        userChecked,
-        userCase,
-      },
-    ]);
+    if (isValidName) {
+      setRequests([
+        ...requests,
+        {
+          userId,
+          userName: `${userName[0].toUpperCase()}${userName.split('').slice(1).join('').toLowerCase()}`,
+          userCase,
+          userMail,
+          userPhone: `+${userPhone.split('')[0]} (${userPhone.split('').slice(1, 4).join('')}) ${userPhone
+            .split('')
+            .slice(4, -5)
+            .join('')}-${userPhone.split('').slice(7).join('')}`,
+          userBday,
+          userSity,
+          // userChoice,
+          userChecked,
+        },
+      ]);
 
-    setUserId(userId + 1);
-    setUserName('');
-    setUserMail('');
-    setUserPhone('');
-    setUserBday('');
-    setUserSity('Moskow');
-    setUserChecked(true);
-    setUserChoice([]);
-    setUserCase('male');
+      setUserId(userId + 1);
+      setUserName('');
+      setUserMail('');
+      setUserPhone('');
+      setUserBday('');
+      setUserSity('Moskow');
+      setUserChecked(true);
+      // setUserChoice([]);
+    }
   };
 
   return (
@@ -91,9 +94,13 @@ const SectionForms = () => {
         <InputNameComponent
           userName={userName}
           setUserName={setUserName}
+          validName={isValidName}
+          setValidName={setIsValidName}
           isSubmit={isSubmit}
           setIsSubmit={setIsSubmit}
         />
+        {/* eslint-disable-next-line max-len */}
+        <SwitcherComponent userCase={userCase} setUserCase={setUserCase} setIsSubmit={setIsSubmit} />
         <InputEmailComponent
           userMail={userMail}
           setUserMail={setUserMail}
@@ -124,22 +131,19 @@ const SectionForms = () => {
           isSubmit={isSubmit}
           setIsSubmit={setIsSubmit}
         />
-        <SelectMultipleComponent
+        {/* <SelectMultipleComponent
           userChoice={userChoice}
           setUserChoice={setUserChoice}
           isSubmit={isSubmit}
           setIsSubmit={setIsSubmit}
-        />
-        <SwitcherComponent
-          userCase={userCase}
-          setUserCase={setUserCase}
-          isSubmit={isSubmit}
-          setIsSubmit={setIsSubmit}
-        />
+        /> */}
         <WrapFormChild>
-          <button onClick={handleSubmit} type="submit">
-            Submit
-          </button>
+          <p>* - звёздочкой помечены поля обязательные к заполнению</p>
+          <div>
+            <button onClick={handleSubmit} type="submit">
+              Submit
+            </button>
+          </div>
         </WrapFormChild>
       </form>
       <WrapCards>
