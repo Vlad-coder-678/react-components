@@ -19,6 +19,7 @@ const SectionFirstScreen = () => {
   const { search } = window.location;
   const query = new URLSearchParams(search).get('inputS');
   const [searchQuery, setSearchQuery] = React.useState(query || '');
+
   const filterCards = (cards, q) => {
     if (!q) {
       return cards;
@@ -28,6 +29,7 @@ const SectionFirstScreen = () => {
       return cardName.includes(q);
     });
   };
+
   const filteredCards = filterCards(cardsData, searchQuery);
 
   return (

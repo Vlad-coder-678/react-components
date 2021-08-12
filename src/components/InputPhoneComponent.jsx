@@ -20,12 +20,16 @@ const InputPhoneComponent = ({ userPhone, setUserPhone, isSubmit, setIsSubmit })
 
   const onBlurInputPhone = (e) => {
     setOnBlurPhone(true);
-    setValidPhone(e.target.value.length > 10 && e.target.value.length < 12 && e.target.value.match(/^[0-9\b]+$/));
+    setValidPhone(
+      e.target.value.length > 10 && e.target.value.length < 12 && e.target.value.match(/^[0-9\b]+$/)
+    );
   };
 
   const onInputPhone = (e) => {
     setUserPhone(e.target.value);
-    setValidPhone(e.target.value.length > 10 && e.target.value.length < 12 && e.target.value.match(/^[0-9\b]+$/));
+    setValidPhone(
+      e.target.value.length > 10 && e.target.value.length < 12 && e.target.value.match(/^[0-9\b]+$/)
+    );
   };
 
   useEffect(() => {

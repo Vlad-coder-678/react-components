@@ -69,6 +69,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "axios": "^0.21.1",
     "focus-visible": "^5.2.0",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
