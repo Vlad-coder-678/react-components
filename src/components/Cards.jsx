@@ -15,11 +15,21 @@ const Wrap = styled.div`
 `;
 
 // eslint-disable-next-line object-curly-newline
-const Cards = ({ searchQuery, API_KEY, sortBy, pageSize, page, setArts, setIsLoading, setPage, arts }) => {
+const Cards = ({
+  searchQuery,
+  API_KEY,
+  sortBy,
+  pageSize,
+  currentPage,
+  setArts,
+  setIsLoading,
+  setCurrentPage,
+  arts,
+}) => {
   useEffect(async () => {
     try {
       const response = await axios.get(
-        `/everything?q=${searchQuery}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}`
+        `/everything?q=${searchQuery}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${currentPage}`
       );
       setArts(response.data.articles);
     } catch (error) {
@@ -31,7 +41,7 @@ const Cards = ({ searchQuery, API_KEY, sortBy, pageSize, page, setArts, setIsLoa
 
   return (
     <Wrap>
-      <Pagination setPage={setPage} amountPages={arts.length / pageSize} />
+      <Pagination setPage={setCurrentPage} amountPages={arts.length / pageSize} />
       <ul>
         {arts.map((item) => (
           <li key={item.title}>

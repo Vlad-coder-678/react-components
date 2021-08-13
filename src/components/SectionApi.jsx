@@ -35,7 +35,7 @@ const SectionApi = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [arts, setArts] = useState([]);
   const [sortBy, setSortBy] = useState(sortType.relevancy);
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(sizePage.five);
 
   const handleSubmit = async (e) => {
@@ -43,7 +43,7 @@ const SectionApi = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `/everything?q=${searchQuery}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}`
+        `/everything?q=${searchQuery}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${currentPage}`
       );
       setArts(response.data.articles);
       console.log(response.data.articles);
@@ -103,10 +103,10 @@ const SectionApi = () => {
           API_KEY={API_KEY}
           sortBy={sortBy}
           pageSize={pageSize}
-          page={page}
+          currentPage={currentPage}
           setArts={setArts}
           setIsLoading={setIsLoading}
-          setPage={setPage}
+          setCurrentPage={setCurrentPage}
           arts={arts}
         />
       )}
