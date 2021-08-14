@@ -11,26 +11,27 @@ const PagWrap = styled.ul`
 `;
 
 const Pagination = ({ setPage, amountPages }) => {
-  const handlePage = (e) => {
+  const handleSetPage = (e) => {
     setPage(e.target.value);
   };
-  const arr = [];
-  for (let i = 1; i <= amountPages; i + 1) {
-    arr.push(i);
-  }
+
+  // eslint-disable-next-line consistent-return
+  const listPagi = () => {
+    for (let i = 1; i <= amountPages; i + 1) {
+      return (
+        <li>
+          <button type="button" value={i} onClick={handleSetPage}>
+            {i}
+          </button>
+        </li>
+      );
+    }
+  };
 
   return (
     <div>
       <h3>Pagination</h3>
-      <PagWrap>
-        {arr.map((item, index) => (
-          <li key={item}>
-            <button type="button" value={index} onClick={handlePage}>
-              {index}
-            </button>
-          </li>
-        ))}
-      </PagWrap>
+      <PagWrap>{listPagi}</PagWrap>
     </div>
   );
 };

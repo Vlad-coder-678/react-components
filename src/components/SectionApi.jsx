@@ -46,7 +46,6 @@ const SectionApi = () => {
         `/everything?q=${searchQuery}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${currentPage}`
       );
       setArts(response.data.articles);
-      console.log(response.data.articles);
     } catch (error) {
       console.log(error);
     } finally {
