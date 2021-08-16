@@ -7,7 +7,7 @@ import CardComponent from './CardComponent';
 // eslint-disable-next-line import/extensions
 import { cardsData } from '../data/cardsData.js';
 
-const Cards = styled.div`
+const CardsStyled = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -35,11 +35,11 @@ const SectionFirstScreen = () => {
   return (
     <div>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <Cards>
+      <CardsStyled>
         {filteredCards.map((item) => (
           <CardComponent data={item} key={item.author} />
         ))}
-      </Cards>
+      </CardsStyled>
     </div>
   );
 };
