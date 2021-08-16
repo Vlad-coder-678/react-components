@@ -53,6 +53,7 @@ const SectionApi = () => {
       );
       setArts(response.data.articles);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
     } finally {
       setIsLoading(false);
