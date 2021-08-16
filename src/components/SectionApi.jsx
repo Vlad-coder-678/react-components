@@ -3,13 +3,19 @@ import styled from 'styled-components';
 
 import Cards from './Cards';
 import axios from './axiosInstance';
+import SelectSortBy from './SelectSortBy';
+import SelectPageSize from './SelectPageSize';
+import SelectCurrentPage from './SelectCurrentPage';
 
-const Wrap = styled.div`
+const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+const Wrap = styled.div`
+  display: flex;
 `;
 
 const VisualHidden = styled.span`
@@ -23,10 +29,10 @@ const VisualHidden = styled.span`
 `;
 
 const API_KEY = '06ce86ba632e44f5a547738589d46c75';
-
 const sortType = { relevancy: 'relevancy', popularity: 'popularity', publishedAt: 'publishedAt' };
-
-const sizePage = { five: 5, ten: 10, twenty: 20 };
+const sizes = { five: 5, ten: 10, twenty: 20 };
+const totalArts = 100;
+const pageNumbers = new Array(totalArts).fill(1).map((a, i) => i + 1);
 
 const SectionApi = () => {
   const { search } = window.location;
@@ -36,7 +42,7 @@ const SectionApi = () => {
   const [arts, setArts] = useState([]);
   const [sortBy, setSortBy] = useState(sortType.relevancy);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(sizePage.five);
+  const [pageSize, setPageSize] = useState(sizes.five);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,12 +64,11 @@ const SectionApi = () => {
   };
 
   return (
-    <Wrap>
+    <Container>
       <form action="/" method="get" onSubmit={handleSubmit}>
         <label htmlFor="api-search">
           <VisualHidden>Search posts</VisualHidden>
         </label>
-        {/* eslint-disable-next-line prettier/prettier */}
         <input
           id="api-search"
           type="text"
@@ -71,45 +76,25 @@ const SectionApi = () => {
           onChange={handleChange}
           placeholder="Search posts"
           name="inputS"
+          required
+        />
+        <SelectSortBy sortBy={sortBy} setSortBy={setSortBy} sortType={sortType} />
+        <SelectPageSize pageSize={pageSize} setPageSize={setPageSize} sizePage={sizes} />
+        <SelectCurrentPage
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          pageNumbers={pageNumbers.slice(0, totalArts / pageSize)}
         />
         <button type="submit" disabled={isLoading}>
           {isLoading ? 'loading...' : 'Search'}
         </button>
-        <select
-          value={sortBy}
-          onChange={(e) => {
-            setSortBy(e.target.value);
-          }}
-        >
-          <option value={sortType.popularity}>{sortType.popularity}</option>
-          <option value={sortType.relevancy}>{sortType.relevancy}</option>
-          <option value={sortType.publishedAt}>{sortType.publishedAt}</option>
-        </select>
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(e.target.value);
-          }}
-        >
-          <option value={sizePage.five}>{sizePage.five}</option>
-          <option value={sizePage.ten}>{sizePage.ten}</option>
-          <option value={sizePage.twenty}>{sizePage.twenty}</option>
-        </select>
       </form>
-      {arts.length <= 0 ? null : (
-        <Cards
-          searchQuery={searchQuery}
-          API_KEY={API_KEY}
-          sortBy={sortBy}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          setArts={setArts}
-          setIsLoading={setIsLoading}
-          setCurrentPage={setCurrentPage}
-          arts={arts}
-        />
+      {arts.length > 0 && (
+        <Wrap>
+          <Cards arts={arts} />
+        </Wrap>
       )}
-    </Wrap>
+    </Container>
   );
 };
 

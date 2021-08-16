@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import axios from './axiosInstance';
 
 import CardNews from './CardNews';
-import Pagination from './Pagination';
 
 const Wrap = styled.div`
   ul {
@@ -15,42 +13,16 @@ const Wrap = styled.div`
 `;
 
 // eslint-disable-next-line object-curly-newline
-const Cards = ({
-  searchQuery,
-  API_KEY,
-  sortBy,
-  pageSize,
-  currentPage,
-  setArts,
-  setIsLoading,
-  setCurrentPage,
-  arts,
-}) => {
-  useEffect(async () => {
-    try {
-      const response = await axios.get(
-        `/everything?q=${searchQuery}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${currentPage}`
-      );
-      setArts(response.data.articles);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [searchQuery]);
-
-  return (
-    <Wrap>
-      <Pagination setPage={setCurrentPage} amountPages={arts.length / pageSize} />
-      <ul>
-        {arts.map((item) => (
-          <li key={item.title}>
-            <CardNews img={item.urlToImage} title={item.title} desc={item.description} path={item.url} />
-          </li>
-        ))}
-      </ul>
-    </Wrap>
-  );
-};
+const Cards = ({ arts }) => (
+  <Wrap>
+    <ul>
+      {arts.map((item) => (
+        <li key={item.title}>
+          <CardNews img={item.urlToImage} title={item.title} desc={item.description} path={item.url} />
+        </li>
+      ))}
+    </ul>
+  </Wrap>
+);
 
 export default Cards;
