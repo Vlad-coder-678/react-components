@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrap = styled.nav`
@@ -10,16 +10,30 @@ const Wrap = styled.nav`
   align-items: center;
 
   a {
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
     margin: 0 10px;
+    cursor: pointer;
+  }
+
+  a:hover {
+    color: #777;
+  }
+
+  .activeLink {
+    color: white;
   }
 `;
 
 const Header = () => (
   <Wrap>
-    <Link to="/" exact="true">
+    <NavLink to="/" exact="true" activeClassName="activeLink">
       Home
-    </Link>
-    <Link to="/about">About</Link>
+    </NavLink>
+    <NavLink to="/about" activeClassName="activeLink">
+      About
+    </NavLink>
   </Wrap>
 );
 
