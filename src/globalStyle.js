@@ -1,6 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  html, body{
+    overflow-X: hidden;
+  }
+  body {
+    background-color: #ddd;
+  }  
   .transition-enter {
     opacity: 0;
     transform: translate(-200px, 0);
