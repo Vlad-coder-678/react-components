@@ -1,14 +1,14 @@
 import React from 'react';
 
-import SectionSearchCards from './homeSections/SectionSearchCards';
+// import SectionSearchCards from './homeSections/SectionSearchCards';
 // import SectionForms from './homeSections/SectionForms';
-// import SectionApi from './homeSections/SectionApi';
+import SectionApi from './homeSections/SectionApi';
 
 const Home = () => (
   <div>
-    <SectionSearchCards />
+    {/* <SectionSearchCards /> */}
     {/* <SectionForms /> */}
-    {/* <SectionApi /> */}
+    <SectionApi />
   </div>
 );
 

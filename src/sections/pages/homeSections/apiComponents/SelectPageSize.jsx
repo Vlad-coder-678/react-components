@@ -1,16 +1,27 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { changePageSize } from '../sectionApiSlice';
 
-const SelectPageSize = ({ pageSize, setPageSize, sizePage }) => (
-  <select
-    value={pageSize}
-    onChange={(e) => {
-      setPageSize(e.target.value);
-    }}
-  >
-    <option value={sizePage.five}>{sizePage.five}</option>
-    <option value={sizePage.ten}>{sizePage.ten}</option>
-    <option value={sizePage.twenty}>{sizePage.twenty}</option>
-  </select>
-);
+const sizes = [5, 10, 20];
+
+const SelectPageSize = () => {
+  const pageSize = useSelector((state) => state.api.pageSize);
+  const dispatch = useDispatch();
+
+  return (
+    <select
+      value={pageSize}
+      onChange={(e) => {
+        dispatch(changePageSize(e.target.value));
+      }}
+    >
+      {sizes.map((i) => (
+        <option key={i} value={i}>
+          {i}
+        </option>
+      ))}
+    </select>
+  );
+};
 
 export default SelectPageSize;

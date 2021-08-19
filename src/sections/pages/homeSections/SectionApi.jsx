@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+
+// eslint-disable-next-line object-curly-newline
+import { setPages, setTotalArts, setArts, setIsLoading, setSearchQuery } from './sectionApiSlice';
 
 import Cards from './apiComponents/Cards';
 import axios from '../../../axios/axiosInstance';
@@ -17,7 +21,6 @@ const Container = styled.div`
 const Wrap = styled.div`
   display: flex;
 `;
-
 const VisualHidden = styled.span`
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -28,40 +31,37 @@ const VisualHidden = styled.span`
   width: 1px;
 `;
 
-const API_KEY = '06ce86ba632e44f5a547738589d46c75';
-const sortType = { relevancy: 'relevancy', popularity: 'popularity', publishedAt: 'publishedAt' };
-const sizes = { five: 5, ten: 10, twenty: 20 };
-const totalArts = 100;
-const pageNumbers = new Array(totalArts).fill(1).map((a, i) => i + 1);
-
 const SectionApi = () => {
-  const { search } = window.location;
-  const query = new URLSearchParams(search).get('inputS');
-  const [searchQuery, setSearchQuery] = useState(query || '');
-  const [isLoading, setIsLoading] = useState(false);
-  const [arts, setArts] = useState([]);
-  const [sortBy, setSortBy] = useState(sortType.relevancy);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(sizes.five);
+  const apiKey = useSelector((state) => state.api.apiKey);
+  const sortBy = useSelector((state) => state.api.sortType);
+  const pageSize = useSelector((state) => state.api.pageSize);
+  const currentPage = useSelector((state) => state.api.currentPage);
+  const arts = useSelector((state) => state.api.arts);
+  const isLoading = useSelector((state) => state.api.isLoading);
+  const searchQuery = useSelector((state) => state.api.searchQuery);
+
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    dispatch(setSearchQuery(e.target.value));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    dispatch(setIsLoading(true));
     try {
       const response = await axios.get(
-        `/everything?q=${searchQuery}&apiKey=${API_KEY}&sortBy=${sortBy}&pageSize=${pageSize}&page=${currentPage}`
+        `/everything?q=${searchQuery}&apiKey=${apiKey}&sortBy=${sortBy}&pageSize=${pageSize}&page=${currentPage}`
       );
-      setArts(response.data.articles);
+      dispatch(setTotalArts(response.data.totalResults));
+      dispatch(setPages());
+      dispatch(setArts(response.data.articles));
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);
     } finally {
-      setIsLoading(false);
+      dispatch(setIsLoading(false));
     }
-  };
-
-  const handleChange = (e) => {
-    setSearchQuery(e.target.value);
   };
 
   return (
@@ -76,16 +76,11 @@ const SectionApi = () => {
           value={searchQuery}
           onChange={handleChange}
           placeholder="Search posts"
-          name="inputS"
           required
         />
-        <SelectSortBy sortBy={sortBy} setSortBy={setSortBy} sortType={sortType} />
-        <SelectPageSize pageSize={pageSize} setPageSize={setPageSize} sizePage={sizes} />
-        <SelectCurrentPage
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          pageNumbers={pageNumbers.slice(0, totalArts / pageSize)}
-        />
+        <SelectSortBy />
+        <SelectPageSize />
+        <SelectCurrentPage />
         <button type="submit" disabled={isLoading}>
           {isLoading ? 'loading...' : 'Search'}
         </button>

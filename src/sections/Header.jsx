@@ -28,7 +28,7 @@ const Wrap = styled.nav`
 
 const Header = () => (
   <Wrap>
-    <NavLink to="/" exact="true" activeClassName="activeLink">
+    <NavLink to="/" exact activeClassName="activeLink">
       Home
     </NavLink>
     <NavLink to="/about" activeClassName="activeLink">

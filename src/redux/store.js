@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counterSlice';
+// eslint-disable-next-line import/no-unresolved
+import apiReducer from '../sections/pages/homeSections/sectionApiSlice';
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    api: apiReducer,
   },
 });

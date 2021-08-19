@@ -1,16 +1,27 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { sortBy } from '../sectionApiSlice';
 
-const SelectSortBy = ({ sortBy, setSortBy, sortType }) => (
-  <select
-    value={sortBy}
-    onChange={(e) => {
-      setSortBy(e.target.value);
-    }}
-  >
-    <option value={sortType.popularity}>{sortType.popularity}</option>
-    <option value={sortType.relevancy}>{sortType.relevancy}</option>
-    <option value={sortType.publishedAt}>{sortType.publishedAt}</option>
-  </select>
-);
+const sorts = ['popularity', 'relevancy', 'publishedAt'];
+
+const SelectSortBy = () => {
+  const sortType = useSelector((state) => state.api.sortType);
+  const dispatch = useDispatch();
+
+  return (
+    <select
+      value={sortType}
+      onChange={(e) => {
+        dispatch(sortBy(e.target.value));
+      }}
+    >
+      {sorts.map((i) => (
+        <option key={i} value={i}>
+          {i}
+        </option>
+      ))}
+    </select>
+  );
+};
 
 export default SelectSortBy;
