@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SearchBar from './SearchBar';
-import CardComponent from './CardComponent';
+import SearchBar from './searchComponents/SearchBar';
+import CardComponent from './searchComponents/CardComponent';
 
 // eslint-disable-next-line import/extensions
-import { cardsData } from '../data/cardsData.js';
+import { cardsData } from '../../../data/cardsData.js';
 
 const CardsStyled = styled.div`
   display: flex;

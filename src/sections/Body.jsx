@@ -2,10 +2,10 @@ import React from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import Home from './Home';
-import About from './About';
-import Details from './Details';
-import NotFound from './NotFound';
+import Home from './pages/Home';
+import About from './pages/About';
+import Details from './pages/Details';
+import NotFound from './pages/NotFound';
 
 const Body = () => {
   const location = useLocation();

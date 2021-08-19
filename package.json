@@ -69,13 +69,16 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.1",
     "focus-visible": "^5.2.0",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.2",
+    "redux": "^4.1.1",
     "styled-components": "^5.3.0"
   }
 }

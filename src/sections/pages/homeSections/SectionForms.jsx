@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import CardRequest from './CardRequest';
-import InputNameComponent from './InputNameComponent';
-import InputEmailComponent from './InputEmailComponent';
-import InputPhoneComponent from './InputPhoneComponent';
-import InputDateComponent from './InputDateComponent';
-import SelectedComponent from './SelectedComponent';
-import CheckboxComponent from './CheckboxComponent';
-// import SelectMultipleComponent from './SelectMultipleComponent';
-import SwitcherComponent from './SwitcherComponent';
+import CardRequest from './formComponents/CardRequest';
+import InputNameComponent from './formComponents/InputNameComponent';
+import InputEmailComponent from './formComponents/InputEmailComponent';
+import InputPhoneComponent from './formComponents/InputPhoneComponent';
+import InputDateComponent from './formComponents/InputDateComponent';
+import SelectedComponent from './formComponents/SelectedComponent';
+import CheckboxComponent from './formComponents/CheckboxComponent';
+// import SelectMultipleComponent from './formComponents/SelectMultipleComponent';
+import SwitcherComponent from './formComponents/SwitcherComponent';
 
 const Wrap = styled.div`
   width: 100%;

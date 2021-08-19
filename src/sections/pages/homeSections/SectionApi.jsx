@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Cards from './Cards';
-import axios from './axiosInstance';
-import SelectSortBy from './SelectSortBy';
-import SelectPageSize from './SelectPageSize';
-import SelectCurrentPage from './SelectCurrentPage';
+import Cards from './apiComponents/Cards';
+import axios from '../../../axios/axiosInstance';
+import SelectSortBy from './apiComponents/SelectSortBy';
+import SelectPageSize from './apiComponents/SelectPageSize';
+import SelectCurrentPage from './apiComponents/SelectCurrentPage';
 
 const Container = styled.div`
   max-width: 1200px;

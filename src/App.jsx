@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Header from './Header';
-import Body from './Body';
-import GlobalStyle from '../globalStyle';
+import Header from './sections/Header';
+import Body from './sections/Body';
+import GlobalStyle from './globalStyle';
 
 const Container = styled.div`
   max-width: 1170px;
